@@ -237,7 +237,7 @@ struct ContentView: View {
                 .padding(.bottom)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .accessibilityElement(children: .ignore)
-                .accessibility(value: Text("This chart describes your expenditures in August 2021 with the total of $4,246.83"))
+                .accessibility(value: Text("This bar chart describes your expenditures in August 2021 with the total of $4,246.83"))
             // accessibility#5 - customise text
         }
     }
