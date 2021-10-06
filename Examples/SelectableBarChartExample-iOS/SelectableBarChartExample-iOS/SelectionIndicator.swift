@@ -58,7 +58,7 @@ struct SelectionIndicator: View {
             // '.id(UUID())' will prevent view from slide animation.
             .id(UUID())
         }
-        //accessibility#3 - add children ignore and customise
+        //accessibility#3 - add children ignore and customise because it doesnt not make sense ??
         .accessibilityElement(children: .ignore)
         .accessibility(value: Text("You have spent $\(Int(self.entry.y)) on Day \((self.entry.x)) "))
     }
