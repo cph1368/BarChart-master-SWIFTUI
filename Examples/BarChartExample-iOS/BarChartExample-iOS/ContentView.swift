@@ -128,9 +128,9 @@ struct ContentView: View {
                                     Text("$4,246.83")
                                         .font(.headline)
                                         .fontWeight(.semibold)
-                                    
-                                  
                                 }
+                                //accessibility#1 - combine
+                                .accessibilityElement(children: .combine)
                                 Spacer()
                                 VStack(alignment: .trailing) {
                                     
@@ -143,8 +143,8 @@ struct ContentView: View {
                                     Text("$3,687.56")
                                         .font(.headline)
                                         .fontWeight(.semibold)
-                                  
                                 }
+                                .accessibilityElement(children: .combine)
                             }
                             .padding(.top,10)
                             
