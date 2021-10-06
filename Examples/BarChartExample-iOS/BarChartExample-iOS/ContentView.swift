@@ -47,9 +47,11 @@ struct ContentView: View {
     @State var xAxisTicksIntervalValue: Double = 5
     @State var isXAxisTicksHidden: Bool = true
     
+    
+    // progress Bar
     @State private var leftBar = 200
     @State private var rightBar = 150
-
+    
     // MARK: - Views
     
     var body: some View {
@@ -61,8 +63,8 @@ struct ContentView: View {
                             .foregroundColor(.white)
                             .padding(5)
                             .shadow(color: .gray, radius: 2)
-                          //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
-                       
+                        //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
+                        
                         VStack(alignment: .leading) {
                             VStack (alignment: .leading){
                                 Text("Total spending")
@@ -138,9 +140,8 @@ struct ContentView: View {
                     }
                     .padding(.horizontal)
                 }
-            
                 
-            
+
                 
             }
         }.navigationViewStyle(StackNavigationViewStyle())
@@ -165,46 +166,46 @@ struct ContentView: View {
             RoundedRectangle(cornerRadius: 5)
                 .foregroundColor(.white)
                 .padding()
-                //.shadow(color: .gray, radius: 2)
-              //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
+            //.shadow(color: .gray, radius: 2)
+            //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
             VStack(alignment: .leading, spacing: 0) {
                 self.selectionIndicatorView()
                 SelectableBarChartView<SelectionLine>(config: self.config)
-                .onBarSelection { entry, location in
-                    self.selectedBarTopCentreLocation = location
-                    self.selectedEntry = entry
-                }
-                .selectionView {
-                    SelectionLine(location: self.selectedBarTopCentreLocation,
-                                  height: 185)
-                }
-                .onAppear() {
-                    let labelsFont = CTFontCreateWithName(("SFProText-Regular" as CFString), 12, nil)
-                    self.config.data.entries = self.randomEntries()
-                    self.config.data.color = .red
-                    self.config.xAxis.labelsColor =  .gray //label X
-                    self.config.xAxis.ticksColor = Color(#colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1))
-                    self.config.labelsCTFont = labelsFont
-                    self.config.xAxis.ticksStyle = StrokeStyle(lineWidth: 0, lineCap: .round)
-                    self.config.yAxis.labelsColor = .gray //label Y
-                    self.config.yAxis.ticksColor = Color(#colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1))
-                    self.config.yAxis.ticksStyle = StrokeStyle(lineWidth: 1.5, lineCap: .round)
-                    self.config.yAxis.minTicksSpacing = 30.0
-                    self.config.yAxis.formatter = { (value, decimals) in
-                        let format = value == 0 ? "" : ""
-                        return String(format: " $%.\(decimals)f\(format)", value)
+                    .onBarSelection { entry, location in
+                        self.selectedBarTopCentreLocation = location
+                        self.selectedEntry = entry
                     }
-                }
-                .animation(.easeInOut)
-                .onReceive([self.isXAxisTicksHidden].publisher.first()) { (value) in
-                    self.config.xAxis.ticksColor = value ? .clear : .gray
-                }
-                .onReceive([self.xAxisTicksIntervalValue].publisher.first()) { (value) in
-                    self.config.xAxis.ticksInterval = Int(value)
-                }
-                .onReceive(self.orientationChanged) { _ in
-                    self.config.objectWillChange.send()
-                }
+                    .selectionView {
+                        SelectionLine(location: self.selectedBarTopCentreLocation,
+                                      height: 185)
+                    }
+                    .onAppear() {
+                        let labelsFont = CTFontCreateWithName(("SFProText-Regular" as CFString), 12, nil)
+                        self.config.data.entries = self.randomEntries()
+                        self.config.data.color = .red
+                        self.config.xAxis.labelsColor =  .gray //label X
+                        self.config.xAxis.ticksColor = Color(#colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1))
+                        self.config.labelsCTFont = labelsFont
+                        self.config.xAxis.ticksStyle = StrokeStyle(lineWidth: 0, lineCap: .round)
+                        self.config.yAxis.labelsColor = .gray //label Y
+                        self.config.yAxis.ticksColor = Color(#colorLiteral(red: 0.8374180198, green: 0.8374378085, blue: 0.8374271393, alpha: 1))
+                        self.config.yAxis.ticksStyle = StrokeStyle(lineWidth: 1.5, lineCap: .round)
+                        self.config.yAxis.minTicksSpacing = 30.0
+                        self.config.yAxis.formatter = { (value, decimals) in
+                            let format = value == 0 ? "" : ""
+                            return String(format: " $%.\(decimals)f\(format)", value)
+                        }
+                    }
+                    .animation(.easeInOut)
+                    .onReceive([self.isXAxisTicksHidden].publisher.first()) { (value) in
+                        self.config.xAxis.ticksColor = value ? .clear : .gray
+                    }
+                    .onReceive([self.xAxisTicksIntervalValue].publisher.first()) { (value) in
+                        self.config.xAxis.ticksInterval = Int(value)
+                    }
+                    .onReceive(self.orientationChanged) { _ in
+                        self.config.objectWillChange.send()
+                    }
             }.padding()
         }.frame(height: self.chartHeight)
     }
@@ -215,22 +216,22 @@ struct ContentView: View {
                 Text("X axis ticks interval: \(Int(self.xAxisTicksIntervalValue))")
             }.padding()
             
-//            VStack(spacing: 0) {
-//                Stepper(value: self.$maxEntriesCount, in: 0...29) {
-//                    Text("Max entries count: \(self.maxEntriesCount)")
-//                }.padding()
-//                Button(action: {
-//                   let newEntries = self.randomEntries()
-//                    self.entries = newEntries
-//                    self.config.data.entries = newEntries
-//                }) {
-//                   Text("Generate entries")
-//                }.randomButtonStyle()
-//           }
-
-//            Toggle(isOn: self.$isXAxisTicksHidden, label: {
-//                Text("X axis ticks is hidden")
-//            }).padding(15)
+            //            VStack(spacing: 0) {
+            //                Stepper(value: self.$maxEntriesCount, in: 0...29) {
+            //                    Text("Max entries count: \(self.maxEntriesCount)")
+            //                }.padding()
+            //                Button(action: {
+            //                   let newEntries = self.randomEntries()
+            //                    self.entries = newEntries
+            //                    self.config.data.entries = newEntries
+            //                }) {
+            //                   Text("Generate entries")
+            //                }.randomButtonStyle()
+            //           }
+            
+            //            Toggle(isOn: self.$isXAxisTicksHidden, label: {
+            //                Text("X axis ticks is hidden")
+            //            }).padding(15)
         }
     }
     
