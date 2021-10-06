@@ -1,4 +1,4 @@
-Exploring 3rd Party Library - Github link here - 
+Exploring 3rd Party Library - Github link here - ##https://github.com/romanbaitaliuk/BarChart
 
 ## SwiftUI BarChart
 Lightweight and easy to use SwiftUI chart library for all Apple platforms
