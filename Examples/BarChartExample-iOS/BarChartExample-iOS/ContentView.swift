@@ -109,7 +109,7 @@ struct ContentView: View {
                 }
                 .selectionView {
                     SelectionLine(location: self.selectedBarTopCentreLocation,
-                                  height: 295)
+                                  height: 95)
                 }
                 .onAppear() {
                     let labelsFont = CTFontCreateWithName(("SFProText-Regular" as CFString), 10, nil)
