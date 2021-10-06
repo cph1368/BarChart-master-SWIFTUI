@@ -236,24 +236,9 @@ struct ContentView: View {
                 .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
                 .padding(.bottom)
                 .frame(maxWidth: .infinity, alignment: .center)
-            
-      
-            //            VStack(spacing: 0) {
-            //                Stepper(value: self.$maxEntriesCount, in: 0...29) {
-            //                    Text("Max entries count: \(self.maxEntriesCount)")
-            //                }.padding()
-            //                Button(action: {
-            //                   let newEntries = self.randomEntries()
-            //                    self.entries = newEntries
-            //                    self.config.data.entries = newEntries
-            //                }) {
-            //                   Text("Generate entries")
-            //                }.randomButtonStyle()
-            //           }
-            
-            //            Toggle(isOn: self.$isXAxisTicksHidden, label: {
-            //                Text("X axis ticks is hidden")
-            //            }).padding(15)
+                .accessibilityElement(children: .ignore)
+                .accessibility(value: Text("This chart describes your expenditures in August 2021 with the total of $4,246.83"))
+            // accessibility#5 - customise text
         }
     }
     
