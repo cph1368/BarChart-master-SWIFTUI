@@ -232,13 +232,10 @@ struct ContentView: View {
                 .font(.title)
                 .fontWeight(.semibold)
                 .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
-                .padding(.bottom,2)
+                .padding(.bottom)
                 .frame(maxWidth: .infinity, alignment: .center)
             
-            Stepper(value: self.$xAxisTicksIntervalValue, in: 1...5) {
-                Text("X axis ticks interval: \(Int(self.xAxisTicksIntervalValue))")
-            }.padding()
-            
+      
             //            VStack(spacing: 0) {
             //                Stepper(value: self.$maxEntriesCount, in: 0...29) {
             //                    Text("Max entries count: \(self.maxEntriesCount)")
