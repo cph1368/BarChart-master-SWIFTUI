@@ -63,7 +63,6 @@ struct ContentView: View {
                             .foregroundColor(.white)
                             .padding(5)
                             .shadow(color: .gray, radius: 2)
-                        //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
                         
                         VStack(alignment: .leading) {
                             VStack (alignment: .leading){
@@ -78,6 +77,7 @@ struct ContentView: View {
                                     .fontWeight(.semibold)
                                     
                             }
+                            .accessibilityElement(children: .combine)
                             .padding(.top)
                             .padding(.horizontal,8)
                             
@@ -147,9 +147,9 @@ struct ContentView: View {
                                 .accessibilityElement(children: .combine)
                             }
                             .padding(.top,10)
-                            
-                            
                         }
+                        //accessibility#2 - combine
+                        .accessibilityElement(children: .combine)
                         .frame(width: 350)
                         .padding(24)
                     }
