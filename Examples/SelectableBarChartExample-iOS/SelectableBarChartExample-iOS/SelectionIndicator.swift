@@ -40,12 +40,16 @@ struct SelectionIndicator: View {
                     .foregroundColor(self.infoRectangleColor)
                 VStack(alignment: .leading) {
                     HStack(alignment: .bottom, spacing: 2) {
-                        Text("\(Int(self.entry.y))").font(.headline).fontWeight(.bold)
-                        Text("b").font(.footnote)
+                        Text("$").font(.footnote)
+                        Text("\(Int(self.entry.y))").font(.footnote).fontWeight(.bold)
                             .foregroundColor(.gray).fontWeight(.bold)
                     }
-                    Text(self.entry.x)
-                        .font(.footnote).foregroundColor(.gray).fontWeight(.bold)
+                    HStack(alignment: .bottom, spacing: 2) {
+                        Text("Day").font(.footnote)
+                        Text(self.entry.x)
+                            .font(.footnote).foregroundColor(.gray).fontWeight(.bold)
+                    }
+                    
                 }
             }
             .frame(width: self.infoRectangleWidth)

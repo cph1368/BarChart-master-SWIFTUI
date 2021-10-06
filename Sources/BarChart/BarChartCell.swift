@@ -36,11 +36,11 @@ struct BarChartCell: View {
             if self.gradient != nil {
                 BarShape(corners: [.topLeft, .topRight], radius: 15)
                             .fill(Color.red)
-                        .frame(width: 8)
+                        .frame(width: 6)
             } else {
                 BarShape(corners: [.topLeft, .topRight], radius: 15)
                             .fill(Color.red)
-                    .frame(width: 8)
+                        .frame(width: 6)
             }
         }
         .frame(width: self.width, height: self.height)

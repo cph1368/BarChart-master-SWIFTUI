@@ -45,7 +45,7 @@ struct ContentView: View {
     
     @State var maxEntriesCount: Int = 30
     @State var xAxisTicksIntervalValue: Double = 5
-    @State var isXAxisTicksHidden: Bool = false
+    @State var isXAxisTicksHidden: Bool = true
     
     // MARK: - Views
     
@@ -61,19 +61,22 @@ struct ContentView: View {
                       //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
                    
                     VStack(alignment: .leading) {
-                        Text("Total spending")
-                            .foregroundColor(.gray)
-                        
-                        Text("$4,246.83")
-                            .font(.headline)
+                        VStack (alignment: .leading){
+                            Text("Total spending")
+                                .foregroundColor(.gray)
+                            
+                            Text("$4,246.83")
+                                .font(.headline)
+                        }
+                        .padding(.top)
+                        .padding(.horizontal,8)
                         
                         self.chartView()
                         self.controlsView()
                     }
                     .padding()
-                   
                 }
-                .padding()
+                .padding(36)
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
@@ -108,7 +111,7 @@ struct ContentView: View {
                 }
                 .selectionView {
                     SelectionLine(location: self.selectedBarTopCentreLocation,
-                                  height: 95)
+                                  height: 185)
                 }
                 .onAppear() {
                     let labelsFont = CTFontCreateWithName(("SFProText-Regular" as CFString), 10, nil)
@@ -137,7 +140,7 @@ struct ContentView: View {
                 .onReceive(self.orientationChanged) { _ in
                     self.config.objectWillChange.send()
                 }
-            }.padding(15)
+            }.padding()
         }.frame(height: self.chartHeight)
     }
     
@@ -147,19 +150,19 @@ struct ContentView: View {
                 Text("X axis ticks interval: \(Int(self.xAxisTicksIntervalValue))")
             }.padding()
             
-            VStack(spacing: 0) {
-                Stepper(value: self.$maxEntriesCount, in: 0...29) {
-                    Text("Max entries count: \(self.maxEntriesCount)")
-                }.padding()
-                Button(action: {
-                    let newEntries = self.randomEntries()
-                    self.entries = newEntries
-                    self.config.data.entries = newEntries
-                }) {
-                    Text("Generate entries")
-                }.randomButtonStyle()
-            }
-            
+//            VStack(spacing: 0) {
+//                Stepper(value: self.$maxEntriesCount, in: 0...29) {
+//                    Text("Max entries count: \(self.maxEntriesCount)")
+//                }.padding()
+//                Button(action: {
+//                   let newEntries = self.randomEntries()
+//                    self.entries = newEntries
+//                    self.config.data.entries = newEntries
+//                }) {
+//                   Text("Generate entries")
+//                }.randomButtonStyle()
+//           }
+
 //            Toggle(isOn: self.$isXAxisTicksHidden, label: {
 //                Text("X axis ticks is hidden")
 //            }).padding(15)
