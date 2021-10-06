@@ -42,7 +42,7 @@ struct SelectionIndicator: View {
                     HStack(alignment: .bottom, spacing: 2) {
                         Text("$").font(.footnote)
                         Text("\(Int(self.entry.y))").font(.footnote).fontWeight(.bold)
-                            .foregroundColor(.gray).fontWeight(.bold)
+                           .fontWeight(.bold)
                     }
                     HStack(alignment: .bottom, spacing: 2) {
                         Text("Day").font(.footnote)
