@@ -68,10 +68,15 @@ struct ContentView: View {
                         VStack(alignment: .leading) {
                             VStack (alignment: .leading){
                                 Text("Total spending")
-                                    .foregroundColor(.gray)
+                                    .font(.title)
+                                    .fontWeight(.light)
+                                    .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                                    .padding(.bottom,2)
                                 
                                 Text("$4,246.83")
-                                    .font(.headline)
+                                    .font(.title)
+                                    .fontWeight(.semibold)
+                                    
                             }
                             .padding(.top)
                             .padding(.horizontal,8)
@@ -81,7 +86,7 @@ struct ContentView: View {
                         }
                         .padding()
                     }
-                    .padding()
+                    .padding(24)
                     
                     ZStack{
                         RoundedRectangle(cornerRadius: 5)
@@ -92,7 +97,10 @@ struct ContentView: View {
                             
                             VStack {
                                 Text("Ins and outs")
-                                    .font(.headline)
+                                    .font(.title)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(Color(#colorLiteral(red: 0.1207325235, green: 0.112150304, blue: 0.3513972461, alpha: 1)))
+                                    .padding(.bottom,2)
                             }
                             ZStack {
                                 HStack(spacing: 2) {
@@ -105,30 +113,37 @@ struct ContentView: View {
                                         .fill(Color(#colorLiteral(red: 0.1263336241, green: 0.1195754185, blue: 0.3506284952, alpha: 1)))
                                         .frame(width: CGFloat(rightBar), height: 15)
                                 }
+                                .padding(.bottom,4)
                                 
                             }
                             
                             HStack {
                                 VStack(alignment: .leading) {
                                     Text("Spending")
-                                        .font(.footnote)
-                                        .foregroundColor(Color(#colorLiteral(red: 0.4834580421, green: 0.4777960777, blue: 0.4998141527, alpha: 1)))
-                                    
+                                        .font(.headline)
+                                        .fontWeight(.regular)
+                                        .foregroundColor(Color(#colorLiteral(red: 0.1156284884, green: 0.1232237741, blue: 0.1499757469, alpha: 1)))
+                                        .padding(.bottom,1)
                                     
                                     Text("$4,246.83")
                                         .font(.headline)
-                                        .padding(.top,1)
+                                        .fontWeight(.semibold)
+                                    
+                                  
                                 }
                                 Spacer()
                                 VStack(alignment: .trailing) {
-                                    Text("Income")
-                                        .font(.footnote)
-                                        .foregroundColor(Color(#colorLiteral(red: 0.4834580421, green: 0.4777960777, blue: 0.4998141527, alpha: 1)))
                                     
+                                    Text("Income")
+                                        .font(.headline)
+                                        .fontWeight(.regular)
+                                        .foregroundColor(Color(#colorLiteral(red: 0.1156284884, green: 0.1232237741, blue: 0.1499757469, alpha: 1)))
+                                        .padding(.bottom,1)
                                     
                                     Text("$3,687.56")
                                         .font(.headline)
-                                        .padding(.top,1)
+                                        .fontWeight(.semibold)
+                                  
                                 }
                             }
                             .padding(.top,10)
@@ -136,9 +151,9 @@ struct ContentView: View {
                             
                         }
                         .frame(width: 350)
-                        .padding()
+                        .padding(24)
                     }
-                    .padding(.horizontal)
+                    .padding(.horizontal,24)
                 }
                 
 
@@ -211,7 +226,15 @@ struct ContentView: View {
     }
     
     func controlsView() -> some View {
-        Group {          
+        Group {
+            
+            Text("August 2021")
+                .font(.title)
+                .fontWeight(.semibold)
+                .foregroundColor(Color(#colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)))
+                .padding(.bottom,2)
+                .frame(maxWidth: .infinity, alignment: .center)
+            
             Stepper(value: self.$xAxisTicksIntervalValue, in: 1...5) {
                 Text("X axis ticks interval: \(Int(self.xAxisTicksIntervalValue))")
             }.padding()
