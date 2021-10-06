@@ -47,36 +47,101 @@ struct ContentView: View {
     @State var xAxisTicksIntervalValue: Double = 5
     @State var isXAxisTicksHidden: Bool = true
     
+    @State private var leftBar = 200
+    @State private var rightBar = 150
+
     // MARK: - Views
     
     var body: some View {
         NavigationView {
             ScrollView {
-
-                ZStack {
-                    RoundedRectangle(cornerRadius: 5)
-                        .foregroundColor(.white)
-                        .padding(5)
-                        .shadow(color: .gray, radius: 2)
-                      //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
-                   
-                    VStack(alignment: .leading) {
-                        VStack (alignment: .leading){
-                            Text("Total spending")
-                                .foregroundColor(.gray)
+                VStack{
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .shadow(color: .gray, radius: 2)
+                          //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
+                       
+                        VStack(alignment: .leading) {
+                            VStack (alignment: .leading){
+                                Text("Total spending")
+                                    .foregroundColor(.gray)
+                                
+                                Text("$4,246.83")
+                                    .font(.headline)
+                            }
+                            .padding(.top)
+                            .padding(.horizontal,8)
                             
-                            Text("$4,246.83")
-                                .font(.headline)
+                            self.chartView()
+                            self.controlsView()
                         }
-                        .padding(.top)
-                        .padding(.horizontal,8)
-                        
-                        self.chartView()
-                        self.controlsView()
+                        .padding()
                     }
                     .padding()
+                    
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(.white)
+                            .padding(5)
+                            .shadow(color: .gray, radius: 2)
+                        VStack(alignment: .leading) {
+                            
+                            VStack {
+                                Text("Ins and outs")
+                                    .font(.headline)
+                            }
+                            ZStack {
+                                HStack(spacing: 2) {
+                                    
+                                    RoundedCornersShape(corners: [.topLeft, .bottomLeft], radius: 15)
+                                        .fill(Color(#colorLiteral(red: 0.8202568293, green: 0.1505224109, blue: 0.09123057872, alpha: 1)))
+                                        .frame(width: CGFloat(leftBar), height: 15)
+                                    
+                                    RoundedCornersShape(corners: [.topRight, .bottomRight], radius: 15)
+                                        .fill(Color(#colorLiteral(red: 0.1263336241, green: 0.1195754185, blue: 0.3506284952, alpha: 1)))
+                                        .frame(width: CGFloat(rightBar), height: 15)
+                                }
+                                
+                            }
+                            
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text("Spending")
+                                        .font(.footnote)
+                                        .foregroundColor(Color(#colorLiteral(red: 0.4834580421, green: 0.4777960777, blue: 0.4998141527, alpha: 1)))
+                                    
+                                    
+                                    Text("$4,246.83")
+                                        .font(.headline)
+                                        .padding(.top,1)
+                                }
+                                Spacer()
+                                VStack(alignment: .trailing) {
+                                    Text("Income")
+                                        .font(.footnote)
+                                        .foregroundColor(Color(#colorLiteral(red: 0.4834580421, green: 0.4777960777, blue: 0.4998141527, alpha: 1)))
+                                    
+                                    
+                                    Text("$3,687.56")
+                                        .font(.headline)
+                                        .padding(.top,1)
+                                }
+                            }
+                            .padding(.top,10)
+                            
+                            
+                        }
+                        .frame(width: 350)
+                        .padding()
+                    }
+                    .padding(.horizontal)
                 }
-                .padding(36)
+            
+                
+            
+                
             }
         }.navigationViewStyle(StackNavigationViewStyle())
     }
@@ -205,5 +270,18 @@ struct RandomButtonStyle: ViewModifier {
 extension View {
     func randomButtonStyle() -> some View {
         self.modifier(RandomButtonStyle())
+    }
+}
+
+
+struct RoundedCornersShape: Shape {
+    let corners: UIRectCorner
+    let radius: CGFloat
+    
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect,
+                                byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
     }
 }
