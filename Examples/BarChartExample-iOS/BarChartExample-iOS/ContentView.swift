@@ -56,7 +56,7 @@ struct ContentView: View {
                                 Text("$4,246.83")
                                     .font(.title)
                                     .fontWeight(.semibold)
-                                    
+                                
                             }
                             .accessibilityElement(children: .combine)
                             .padding(.top)
@@ -137,7 +137,7 @@ struct ContentView: View {
                     .padding(.horizontal,24)
                 }
                 
-
+                
                 
             }
         }.navigationViewStyle(StackNavigationViewStyle())
@@ -158,12 +158,11 @@ struct ContentView: View {
     
     func chartView() -> some View {
         ZStack {
-            // Drop shadow rectangle
+            // Adding drop shadow rectangle to replicate design
             RoundedRectangle(cornerRadius: 5)
                 .foregroundColor(.white)
                 .padding()
-            //.shadow(color: .gray, radius: 2)
-            //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
+            
             VStack(alignment: .leading, spacing: 0) {
                 self.selectionIndicatorView()
                 SelectableBarChartView<SelectionLine>(config: self.config)
@@ -192,8 +191,6 @@ struct ContentView: View {
                             return String(format: " $%.\(decimals)f\(format)", value)
                         }
                     }
-                   // .accessibility(value: Text("You have spent $\(Int(self.entry.y)) on Day \((self.entry.x)) "))
-                    
                     .animation(.easeInOut)
                     .onReceive([self.isXAxisTicksHidden].publisher.first()) { (value) in
                         self.config.xAxis.ticksColor = value ? .clear : .gray
@@ -219,7 +216,7 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
                 .accessibilityElement(children: .ignore)
                 .accessibility(value: Text("This bar chart describes your expenditures in August 2021 with the total of $4,246.83"))
-            // accessibility#5 - customise text
+            // accessibility#5 - customise text because it does not make any sense
         }
     }
     
