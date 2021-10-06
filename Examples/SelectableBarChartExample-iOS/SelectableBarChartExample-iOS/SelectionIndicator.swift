@@ -40,9 +40,10 @@ struct SelectionIndicator: View {
                     .foregroundColor(self.infoRectangleColor)
                 VStack(alignment: .leading) {
                     HStack(alignment: .bottom, spacing: 2) {
-                        Text("$").font(.footnote)
-                        Text("\(Int(self.entry.y))").font(.footnote).fontWeight(.bold)
+                       // Text("$").font(.footnote)
+                        Text("$\(Int(self.entry.y))").font(.footnote).fontWeight(.bold)
                            .fontWeight(.bold)
+                            
                     }
                     HStack(alignment: .bottom, spacing: 2) {
                         Text("Day").font(.footnote)
@@ -57,6 +58,9 @@ struct SelectionIndicator: View {
             // '.id(UUID())' will prevent view from slide animation.
             .id(UUID())
         }
+        //accessibility#3 - add children ignore and customise
+        .accessibilityElement(children: .ignore)
+        .accessibility(value: Text("You have spent $\(Int(self.entry.y)) on Day \((self.entry.x)) "))
     }
     
     func positionX(_ proxy: GeometryProxy, location: CGFloat) -> CGFloat {

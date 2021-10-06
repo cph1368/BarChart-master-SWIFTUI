@@ -211,6 +211,8 @@ struct ContentView: View {
                             return String(format: " $%.\(decimals)f\(format)", value)
                         }
                     }
+                   // .accessibility(value: Text("You have spent $\(Int(self.entry.y)) on Day \((self.entry.x)) "))
+                    
                     .animation(.easeInOut)
                     .onReceive([self.isXAxisTicksHidden].publisher.first()) { (value) in
                         self.config.xAxis.ticksColor = value ? .clear : .gray
