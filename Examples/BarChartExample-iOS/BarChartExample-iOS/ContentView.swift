@@ -65,7 +65,6 @@ struct ContentView: View {
                             .foregroundColor(.gray)
                         
                         Text("$4,246.83")
-                            .padding(.bottom)
                             .font(.headline)
                         
                         self.chartView()
