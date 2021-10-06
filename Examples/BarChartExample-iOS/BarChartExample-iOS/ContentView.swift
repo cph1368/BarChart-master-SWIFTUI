@@ -43,8 +43,8 @@ struct ContentView: View {
     
     // MARK: - Controls Properties
     
-    @State var maxEntriesCount: Int = 0
-    @State var xAxisTicksIntervalValue: Double = 1
+    @State var maxEntriesCount: Int = 30
+    @State var xAxisTicksIntervalValue: Double = 5
     @State var isXAxisTicksHidden: Bool = false
     
     // MARK: - Views
@@ -98,7 +98,7 @@ struct ContentView: View {
                 .foregroundColor(.white)
                 .padding()
                 //.shadow(color: .gray, radius: 2)
-                Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
+              //  Text("No data").opacity(self.entries.isEmpty ? 1.0 : 0.0)
             VStack(alignment: .leading, spacing: 0) {
                 self.selectionIndicatorView()
                 SelectableBarChartView<SelectionLine>(config: self.config)
