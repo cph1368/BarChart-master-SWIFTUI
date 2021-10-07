@@ -220,6 +220,15 @@ struct ContentView: View {
         }
     }
     
+    
+    
+    struct ContentView_Previews: PreviewProvider {
+        static var previews: some View {
+            ContentView()
+        }
+    }
+    
+    
     // MARK: - Random Helpers
     
     func randomEntries() -> [ChartDataEntry] {
@@ -241,6 +250,7 @@ extension Color {
                      blue: .random(in: 0...1))
     }
 }
+
 
 // MARK: - Modifers
 
